@@ -1,0 +1,27 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: poke-depl
+  namespace: pokescale
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pokescale
+  template:
+    metadata:
+      labels:
+        app: pokescale
+    spec:
+      containers:
+        - name: pokescale-cont
+          image: ghcr.io/xamma/pokescale:latest
+          imagePullPolicy: Always
+          env:
+            - name: API_PORT
+              value: 8000
+          ports:
+            - containerPort: 8000
+              name: port-name
+      restartPolicy: Always

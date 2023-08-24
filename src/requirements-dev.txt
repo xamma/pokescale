@@ -1,0 +1,10 @@
+fastapi
+uvicorn[standard]
+jinja2
+pydantic
+pydantic-settings
+requests
+python-multipart
+# pytest
+# httpx
+# flake8

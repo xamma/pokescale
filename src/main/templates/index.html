@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Pokemon Scale</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f2f2f2;
+            font-family: 'Poppins', sans-serif;
+            font-size: 18px;
+            color: #333333;
+            line-height: 1.5;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 50px 20px;
+        }
+
+        .heading {
+            align-items: center;
+            display: flex;
+            margin-bottom: -10px;
+        }
+
+        .host-info {
+            color:#ff8f7a;
+        }
+
+        .image-class {
+            width: 100%;
+            height: auto;
+            max-width: 80px;
+            padding-left: 25px;
+        }
+
+        h1 {
+            font-size: 48px;
+            margin-bottom: 30px;
+            color: #333333;
+            opacity: 0;
+            transform: translateY(-50px);
+            animation: fadeInDown 1s ease forwards;
+        }
+
+        p {
+            margin-bottom: 20px;
+            opacity: 0;
+            transform: translateY(50px);
+            animation: fadeInUp 1s ease forwards;
+        }
+
+        a {
+            color: #ff6f61;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        a:hover {
+            color: #ff8f7a;
+            text-decoration: underline;
+        }
+
+        .gif {
+            text-align: center;
+        }
+
+        @keyframes fadeInDown {
+            0% {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="heading">
+            <h1>Pokémon scale</h1>
+            <img src="../static/relaxo.png" alt="pokeimage" class="image-class"/>
+        </div>
+        <p class="host-info">Running on {{ hostname }}</p>
+        <h2>How much does a Pokémon weigh?</h2>
+        <form action="/pokemon" method="POST">
+            <label for="pokemon_name">Enter Pokémon Name:</label>
+            <input type="text" id="pokemon_name" name="pokemon_name" required>
+            <button type="submit">Get Info</button>
+        </form>
+        {% if pokemon %}
+        <h2>Info about {{ pokemon }}:</h2>
+        <p><b>Weight:</b> {{ weight }} pounds!</p>
+        <p><b>Type:</b> {{ types }}</p>
+        <img src="{{ image }}" alt="{{ pokemon }} image" class="image-shiny">
+        {% endif %}
+    </div>
+    <footer style="text-align: center; font-size: 14px; font-weight: bold; margin-top: 50px;">
+        Made with &lt;3
+        <br>
+        <a href="https://xamma.github.io" target="_blank" rel="noreferrer">Xamma</a>
+    </footer>
+</body>
+</html>

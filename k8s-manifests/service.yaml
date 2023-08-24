@@ -1,0 +1,15 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: pokescale-svc
+  namespace: pokescale
+spec:
+  selector:
+    app: pokescale
+  type: ClusterIP
+  ports:
+    - name: backend
+      protocol: TCP
+      port: 8000
+      targetPort: 8000
