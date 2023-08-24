@@ -8,6 +8,8 @@ jobs:
   testandbuild:
 
     runs-on: ubuntu-latest
+    permissions:
+      packages: write
 
     steps:
     - name: check out code repro
