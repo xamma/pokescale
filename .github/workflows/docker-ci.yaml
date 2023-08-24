@@ -39,6 +39,7 @@ jobs:
 
     - name: test-pytest
       id: test
+      working-directory: ./src/main
       run: |
        pytest
 
