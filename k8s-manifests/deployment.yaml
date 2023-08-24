@@ -20,7 +20,7 @@ spec:
           imagePullPolicy: Always
           env:
             - name: API_PORT
-              value: 8000
+              value: "8000"
           ports:
             - containerPort: 8000
               name: port-name
