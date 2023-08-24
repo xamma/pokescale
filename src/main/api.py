@@ -32,6 +32,7 @@ async def render_pokemon(request: Request, pokemon_name: str = Form(...)):
         types = data["types"]
     except Exception as e:
         weight = f"Error: {e}"
+        types = "-"
         image = "/static/entonerror.jpg"
 
     return templates.TemplateResponse("index.html", {"request":request,"hostname":hostname,"pokemon":pokemon_name.capitalize(),"weight":weight,"types":types,"image":image})
