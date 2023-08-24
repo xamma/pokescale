@@ -57,4 +57,4 @@ jobs:
         context: .
         platforms: linux/amd64
         push: true
-        tags: ghcro.io/xamma/pokescale:latest 
+        tags: ghcr.io/xamma/pokescale:latest 
