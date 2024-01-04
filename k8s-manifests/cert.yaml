@@ -1,0 +1,12 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: nginx-cert
+  namespace: pokescale
+spec:
+  secretName: nginx-tls-secret
+  issuerRef:
+    name: nginx-clusterissuer
+    kind: ClusterIssuer
+  dnsNames:
+    - pokescale.k8sdev.local

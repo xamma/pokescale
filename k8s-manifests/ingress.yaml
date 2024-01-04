@@ -24,3 +24,7 @@ spec:
                 name: pokescale-svc
                 port:
                   number: 8000
+  tls:
+    - hosts:
+        - pokescale.k8sdev.local
+      secretName: nginx-tls-secret
