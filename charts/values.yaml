@@ -1,0 +1,39 @@
+ingress:
+  enabled: false
+  annotations:
+    cert-manager.io/cluster-issuer: cloudflare-prod
+    external-dns.alpha.kubernetes.io/target: d53a52f9-8999-4516-a49b-cbdb79c44102.cfargotunnel.com
+    external-dns.alpha.kubernetes.io/hostname: pokescale.xammaops.win
+  className: "traefik"
+  hosts:
+    - host: pokescale.xammaops.win
+      paths:
+        - /
+  tls:
+    - secretName: pokescale-tls
+      hosts:
+        - pokescale.xammaops.win
+
+httproute:
+  enabled: false
+  parentRefs:
+    - name: "envoy-internal"
+      namespace: "networking"
+  hosts:
+    - host: pokescale.xammaops.win
+      paths:
+        - /
+
+env:
+  api_port: 8000
+
+depl:
+  replicas: 1
+  pokescale:
+    container: pokescale
+    image:
+      repository: ghcr.io/xamma/pokescale
+      tag: latest
+    imagePullPolicy: Always
+
+kubernetesClusterDomain: cluster.local

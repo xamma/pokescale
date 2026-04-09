@@ -1,15 +1,17 @@
-FROM python:3.11-slim
+FROM python:3.13-slim
 
-RUN mkdir /app
-
-COPY /src/requirements.txt /opt/requirements.txt
-
-RUN pip install --no-cache-dir -r /opt/requirements.txt
-
-COPY /src/main /app
+RUN addgroup --system appgroup && \
+    adduser --system --ingroup appgroup --no-create-home appuser
 
 WORKDIR /app
 
+COPY src/requirements-pinned.txt /tmp/requirements.txt
+RUN pip install --no-cache-dir -r /tmp/requirements.txt
+
+COPY src/main/ /app/
+
+USER appuser
+
 EXPOSE 8000
 
-ENTRYPOINT ["python", "api.py"] 
+ENTRYPOINT ["python", "api.py"]

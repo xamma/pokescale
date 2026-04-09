@@ -1,0 +1,30 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ $.Release.Name }}
+  labels:
+    app: {{ $.Release.Name }}
+  {{- include "charts.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.depl.replicas }}
+  selector:
+    matchLabels:
+      app: {{ $.Release.Name }}
+    {{- include "charts.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      labels:
+        app: {{ $.Release.Name }}
+      {{- include "charts.selectorLabels" . | nindent 8 }}
+    spec:
+      containers:
+      - env:
+        - name: KUBERNETES_CLUSTER_DOMAIN
+          value: {{ quote .Values.kubernetesClusterDomain }}
+        image: {{ .Values.depl.pokescale.image.repository }}:{{ .Values.depl.pokescale.image.tag | default .Chart.AppVersion }}
+        imagePullPolicy: {{ .Values.depl.pokescale.imagePullPolicy }}
+        name: {{ $.Values.depl.pokescale.container }}
+        ports:
+        - containerPort: {{ .Values.env.api_port }}
+        resources: {}

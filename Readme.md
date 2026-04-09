@@ -33,5 +33,4 @@ cd src/main
 python api.py
 ```
 
-Deploy to Kubernetes or use GitOps with e.g. ArgoCD.  
-Make sure to adjust the manifests to your needs.  
+You can also use the helm chart ***pokescale*** under https://xamma.github.io/helm-charts for deploying.  

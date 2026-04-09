@@ -8,6 +8,7 @@ Precendences:
 3. Default Vars
 """
 
+
 class AppSettings(BaseSettings):
     api_port: int | None = 8000
 

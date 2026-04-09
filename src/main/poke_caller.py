@@ -6,8 +6,9 @@ Takes a name as argument and returns
 the response data as dictionary.
 """
 
-class PokeCaller():
-    def __init__(self, poke_name:str):
+
+class PokeCaller:
+    def __init__(self, poke_name: str):
         self.base_url = "https://pokeapi.co/api/v2/pokemon/"
         self.poke_name = poke_name.lower()
         self.res_data = []
