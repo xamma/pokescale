@@ -2,7 +2,6 @@ ingress:
   enabled: false
   annotations:
     cert-manager.io/cluster-issuer: cloudflare-prod
-    external-dns.alpha.kubernetes.io/target: d53a52f9-8999-4516-a49b-cbdb79c44102.cfargotunnel.com
     external-dns.alpha.kubernetes.io/hostname: pokescale.xammaops.win
   className: "traefik"
   hosts:
